@@ -6,14 +6,18 @@ DashScope视觉模型配置要点：auxiliary.vision.provider 必须设为 "alib
 §
 板换知识库在 E:\13_WorkSpaceForHermes\01_bphe_knowledge_base\，回答专业问题优先查此库，找不到再搜外部。引用必须注明文献名和数据来源(知识库/手册/估算)。所有 profile 可通过绝对路径共用此库。skill 按需安装到对应 profile 下。
 §
-SolidWorks 2025 SP1（版本32.1），COM接口 FeatureExtrusion2 参数不兼容。solikworks-auto skill 已装到 senior_mechanical_engineer profile。solidworks-automation-skill（⭐412）也已装，自检通过，依赖 pywin32+comtypes 已装。Auto-Modeling-Agent 仓库为空壳。
-§
 微信已通过 iLink Bot 接入 gateway，安装为 Windows 计划任务（开机自启）。WeChat 禁止用 LaTeX $$/$ 公式（显示乱码），用纯文本描述替代（如 Δp∝ρ·U²）。Solikworks-auto skill 已安装（注意拼写缺了d）。FAL 生图余额已耗尽。DashScope sk-ws Key 只能 VL 识图（alibaba, qwen3-vl-plus），不能生图。
 §
 用户要求：所有参考性数据必须标注实验来源（什么设备/板型/工况）。非板式换热器的结论/数据必须着重标记告知。不可把圆管/其他设备的实验数据直接当PHE数据推荐。
 §
-GitHub加速：ghproxy-cli(端口16888)开机自启(.bat已加固：independent window + port-ready wait)。ProxyServer.cs已修复：3s超时+IP fallback(仅140.82段)+禁DNS(被劫持)+新建TcpClient每次重试。桌面版update check走REST API->git fetch 10s超时，3s×4IP=12s略超边界，网络波动时可能再失败需重试。HTTPS_PROXY+NO_PROXY双环境体系(.env+setx)。参考hermes-config-china skill的ghproxy-git-debugging.md。
-§
-GitHub 加速用 ghproxy-cli（E:\13_WorkSpaceForHermes\02 for some project\ghproxy-cli\），系统环境变量 HTTPS_PROXY + NO_PROXY（含 weixin.qq.com、pypi.org 白名单）需与 .env 同步。PyPI 清华镜像 PIP_INDEX_URL 已配。Hermes 更新后快捷方式会失效需重建。系统环境变量 NO_PORXY 可能丢失需重新 setx。
-§
 GitHub备份仓库 xz1996618/Hermes-agent-backup。恢复skill=hermes-restore。完整会话需手动复制整个 hermes 目录。
+§
+每周五9:00自动备份到GitHub（cron任务ID=b69be9b422f6，脚本=github_backup.py）。换电脑后先克隆仓库，安装hermes-restore skill，再说"恢复我的配置"。
+§
+每日行业资讯早报 cron 任务（ID=58a6ea7fc938，脚本=daily_briefing.py）必须投递到微信（deliver: all）。iLink 有限流时等待冷却后再重试。用户不接受只发回当前会话的折中方案。
+§
+ghproxy-cli 端口16888，开机自启，HTTPS_PROXY+NO_PROXY 双环境体系。用户有股票分析需求（仅数据分析，不给买卖建议）。
+§
+量化交易助手 E:\13_WorkSpaceForHermes\quant-trading\quant-trading.html：实盘行情(腾讯/新浪JSONP)+历史回测(自定义资产+日期范围+手动导入+手续费计算)+ATR动态阈值策略。最终组合：300308中际旭创、002837英维克、300383光环新网、600845宝信软件。数据下载优先baostock(股票)，需绕过ghproxy(session.trust_env=False)。初始本金¥10000，基准线为持有不动。
+§
+用户对审批弹窗有顾虑：不确定批准框里的命令是在删除什么文件/干什么。以后需要审批删除操作时，先解释清楚路径和目的，让用户明白再请求批准。
