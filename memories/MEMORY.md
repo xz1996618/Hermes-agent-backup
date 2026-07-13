@@ -6,9 +6,7 @@ DashScope视觉模型配置要点：auxiliary.vision.provider 必须设为 "alib
 §
 板换知识库在 E:\13_WorkSpaceForHermes\01_bphe_knowledge_base\，回答专业问题优先查此库，找不到再搜外部。引用必须注明文献名和数据来源(知识库/手册/估算)。所有 profile 可通过绝对路径共用此库。skill 按需安装到对应 profile 下。
 §
-微信已通过 iLink Bot 接入 gateway，安装为 Windows 计划任务（开机自启）。WeChat 禁止用 LaTeX $$/$ 公式（显示乱码），用纯文本描述替代（如 Δp∝ρ·U²）。Solikworks-auto skill 已安装（注意拼写缺了d）。FAL 生图余额已耗尽。DashScope sk-ws Key 只能 VL 识图（alibaba, qwen3-vl-plus），不能生图。
-§
-用户要求：所有参考性数据必须标注实验来源（什么设备/板型/工况）。非板式换热器的结论/数据必须着重标记告知。不可把圆管/其他设备的实验数据直接当PHE数据推荐。
+用户偏好 DeepSeek 做主模型，不要在他不知情时自动切到千问等替代模型。遇到模型超时问题时，先问他要不要切再执行。
 §
 GitHub备份仓库 xz1996618/Hermes-agent-backup。恢复skill=hermes-restore。完整会话需手动复制整个 hermes 目录。
 §
@@ -16,8 +14,18 @@ GitHub备份仓库 xz1996618/Hermes-agent-backup。恢复skill=hermes-restore。
 §
 每日行业资讯早报 cron 任务（ID=58a6ea7fc938，脚本=daily_briefing.py）必须投递到微信（deliver: all）。iLink 有限流时等待冷却后再重试。用户不接受只发回当前会话的折中方案。
 §
-ghproxy-cli 端口16888，开机自启，HTTPS_PROXY+NO_PROXY 双环境体系。用户有股票分析需求（仅数据分析，不给买卖建议）。
+ghproxy-cli 端口16888（publish目录 02_for some project 注意下划线）。daemon需工作目录 E:\13_WorkSpaceForHermes\ghproxy-cli。Git需http.sslBackend=schannel 否则OpenSSL断连。开机自启已从Startup迁移到Windows任务计划\ghproxy-cli。国内网络git fetch需重试1-2次。
 §
 量化交易助手 E:\13_WorkSpaceForHermes\quant-trading\quant-trading.html：实盘行情(腾讯/新浪JSONP)+历史回测(自定义资产+日期范围+手动导入+手续费计算)+ATR动态阈值策略。最终组合：300308中际旭创、002837英维克、300383光环新网、600845宝信软件。数据下载优先baostock(股票)，需绕过ghproxy(session.trust_env=False)。初始本金¥10000，基准线为持有不动。
 §
+板式换热器专题文献总结.md 在知识库根目录（E:\13_WorkSpaceForHermes\01_bphe_knowledge_base\板式换热器专题文献总结.md），包含角孔压降、接管压降、板内分配、板间分配、低GWP冷媒五个专题总结。用户说"更新专题文献"时，重新扫描知识库并更新该文件。
+§
+偏差图skill（experimental-vs-simulation-deviation-plot）已安装。偏好：散点图+y=x+拟合线+偏差vs Re。图片直接嵌入原Excel。
+§
+HTTPS_PROXY 导致 API 间歇超时。NO_PROXY 已含 open.bigmodel.cn（智谱）。
+§
+审批模式设为smart，不涉及系统安全的操作（Python脚本、数据分析等）自动批准。
+§
 用户对审批弹窗有顾虑：不确定批准框里的命令是在删除什么文件/干什么。以后需要审批删除操作时，先解释清楚路径和目的，让用户明白再请求批准。
+§
+智谱 GLM-4V-Flash API Key 已配置，全免费。Provider=zhipu。域名已加 NO_PROXY。
