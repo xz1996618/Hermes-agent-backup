@@ -9,3 +9,7 @@
 对量化交易有深入了解——能提出详细的策略评估报告（ATR动态阈值、大盘过滤、持仓再平衡等专业概念）。注重细节，会指出UI瑕疵（输入框太小）和逻辑bug（硬编码天数、固定收益率）。偏好自适应/动态参数方案优于固定阈值。
 §
 关注中文A股市场（中际旭创、英维克等），熟悉中国金融数据源（腾讯行情qt.gtimg.cn、新浪财经hq.sinajs.cn）。偏好从file://直接打开HTML文件工作，不接受依赖后端代理的方案。
+§
+桌面工具偏好：拒绝 HTML/浏览器方案，要原生 Windows 桌面窗口（小组件/关闭即退出）。pywebview（WebView2）不可用（系统无运行时），桌面小组件只能用 tkinter（Python 内置）。
+§
+用户偏好桌面原生工具，拒绝HTML/浏览器版本。Windows桌面小组件首选tkinter（零依赖），pywebview需先检查WebView2运行时。Todolist项目位于 E:\13_WorkSpaceForHermes\02_for some project\todolist\，当前为tkinter版。
